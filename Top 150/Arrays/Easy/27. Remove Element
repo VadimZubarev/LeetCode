@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int i = nums.size()-1;
+        int k = 0;
+        auto iter = nums.cbegin();
+        for (i; i >= 0; i--)
+        {
+            if (nums[i] == val && k == 0)
+            {
+                nums[i] = -1;
+            }
+            else if (nums[i] == val && k > 0)
+            {
+                nums.erase(iter+i);
+                nums.push_back(-1);
+            }
+            else 
+            {
+                k++;
+            }
+        }
+        return k;
+    }
+};
