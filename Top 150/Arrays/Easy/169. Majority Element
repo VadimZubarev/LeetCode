@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int i = 0;
+        int k = 1;
+        int num_one = nums[0];
+        //int num_two = 0;
+
+        if (n == 1) return nums[0];
+
+        for (i=1; i<n; i++)
+        {
+            if (nums[i] == num_one) k++;
+            else
+            {
+                k--;
+            }
+            if (k == 0)
+            {
+                k = 1;
+                num_one = nums[i];
+            }
+        }
+        return num_one;
+    }
+};
