@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        map<char, int> toInt;
+        int sum = 0;
+        int n = s.size()-1;
+        toInt.emplace('I', 1);
+        toInt.emplace('V', 5);
+        toInt.emplace('X', 10);
+        toInt.emplace('L', 50);
+        toInt.emplace('C', 100);
+        toInt.emplace('D', 500);
+        toInt.emplace('M', 1000);
+        
+        while (n >= 0)
+        {
+            auto it = toInt.find(s[n]);
+            
+            if (n > 0 && toInt.find(s[n - 1])->second < toInt.find(s[n])->second)
+            {
+                sum += toInt.find(s[n])->second - toInt.find(s[n - 1])->second;
+                n--;
+            }
+            else sum += toInt.find(s[n])->second;
+
+            n--;
+        }
+        return sum;
+    }
+};
